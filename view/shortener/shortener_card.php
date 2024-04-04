@@ -224,6 +224,7 @@ if (($id || $ref) && $action == 'edit') {
         $object->fields['fk_element']['label'] = $langs->trans($objectsMetadata['langs']);
 
         if (GETPOST('from_element', 'int') > 0) {
+            $object->fields['short_url']['visible']    = 0;
             $object->fields['element_type']['visible'] = 0;
             $object->fields['fk_element']['visible']   = 0;
         }
