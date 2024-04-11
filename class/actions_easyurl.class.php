@@ -200,7 +200,8 @@ class ActionsEasyurl
                             $shortener->status       = Shortener::STATUS_VALIDATED;
                             $shortener->element_type = '';
                             $shortener->fk_element   = null;
-                            $shortener->update($user);
+                            $shortener->update($user, true);
+                            $shortener->call_trigger('SHORTENER_UNASSIGN', $user);
 
                             setEventMessages($langs->trans('UnassignShortenerSuccess', $shortener->ref), []);
                             header('Location: ' . $_SERVER['PHP_SELF'] . '?id=' . $object->id);
