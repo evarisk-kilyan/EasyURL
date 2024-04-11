@@ -169,7 +169,6 @@ class InterfaceEasyURLTriggers extends DolibarrTriggers
             // UNASSIGN
             case 'SHORTENER_UNASSIGN' :
                 $actioncomm->label = $langs->trans('ObjectUnAssignTrigger', $langs->transnoentities(ucfirst($object->element)), $object->ref);
-                echo '<pre>'; print_r( $actioncomm ); echo '</pre>'; exit;
                 $actioncomm->create($user);
                 break;
 
