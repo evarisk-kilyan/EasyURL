@@ -167,7 +167,10 @@ class ActionsEasyurl
 
         if (in_array($parameters['currentcontext'], ['propalcard', 'ordercard', 'invoicecard', 'contractcard', 'interventioncard'])) {
             if ($action == 'set_easy_url') {
-                set_easy_url_link($object, GETPOST('url_type'));
+                $result = set_easy_url_link($object, GETPOST('url_type'));
+                if (!empty($result) && is_object($result)) {
+                    setEventMessage('EasyUrlError', 'errors');
+                }
 
                 header('Location: ' . $_SERVER['PHP_SELF'] . '?id=' . $object->id);
                 exit;

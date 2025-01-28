@@ -60,6 +60,7 @@ SetEasyURLLink       = Créer URL raccourcie
 SetEasyURLSuccess    = Création réussie de l'URL raccourcie
 SetEasyURLErrors     = Erreur : création de l'URL raccourcie
 GetEasyURLErrors     = Erreur : URL raccourcie non trouvée
+EasyUrlError         = Erreur lors de la création de l'URL raccourcie
 
 
 

@@ -118,13 +118,19 @@ class InterfaceEasyURLTriggers extends DolibarrTriggers
             case 'CONTRACT_VALIDATE':
             case 'FICHINTER_VALIDATE':
                 if (getDolGlobalInt('EASYURL_AUTOMATIC_GENERATION')) {
-                    set_easy_url_link($object, 'signature');
+                    $result = set_easy_url_link($object, 'signature');
+                    if (!empty($result) && is_object($result)) {
+                        setEventMessage('EasyUrlError', 'errors');
+                    }
                 }
                 break;
             case 'ORDER_VALIDATE':
             case 'BILL_VALIDATE':
                 if (getDolGlobalInt('EASYURL_AUTOMATIC_GENERATION')) {
-                    set_easy_url_link($object, 'payment');
+                    $result = set_easy_url_link($object, 'payment');
+                    if (!empty($result) && is_object($result)) {
+                        setEventMessage('EasyUrlError', 'errors');
+                    }
                 }
                 break;
 
