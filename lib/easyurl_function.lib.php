@@ -212,3 +212,37 @@ function update_easy_url_link(CommonObject $object): int
     $data = json_decode($data);
     return $data->statusCode == 200 ? 1 : 0;
 }
+
+/**
+ * Get number of clicks
+ *
+ * @param  CommonObject $object Object
+ * @return int                  Number of clicks
+ */
+function get_number_of_clicks(CommonObject $object)
+{
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, getDolGlobalString('EASYURL_URL_YOURLS_API'));
+    curl_setopt($ch, CURLOPT_HEADER, 0);            // No header in the result
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // Return, do not echo result
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_POST, 1);              // This is a POST request
+    curl_setopt($ch, CURLOPT_POSTFIELDS, [               // Data to POST
+        'action'    => 'url-stats',
+        'signature' => getDolGlobalString('EASYURL_SIGNATURE_TOKEN_YOURLS_API'),
+        'format'    => 'json',
+        'shorturl'  => $object->short_url
+    ]);
+
+    $data = curl_exec($ch);
+    curl_close($ch);
+
+    $data = json_decode($data);
+    if (!isset($data->link->clicks)) {
+        setEventMessage('ShortenerGetError', 'errors');
+        return 0;
+    }
+
+    return $data->link->clicks;
+}

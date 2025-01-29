@@ -115,6 +115,8 @@ NoLinkedElement           = Aucun élément lié
 ShortenerRepartition      = Répartition des raccourcissements d'URLs par %s
 ShortenerUrlType          = Liste des types d'URLs
 ShowQRCode                = Afficher le QRCode de l'URL raccourcie
+NumberOfClicks            = Nombre de clics
+ShortenerGetError         = Erreur lors de la récupération du raccourcissement d'URL
 
 # Fiels - Champ
 ShortUrl = URL raccourcie

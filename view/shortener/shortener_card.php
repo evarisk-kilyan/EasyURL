@@ -32,6 +32,7 @@ if (file_exists('../../easyurl.main.inc.php')) {
 
 // load EasyURL libraries
 require_once __DIR__ . '/../../lib/easyurl_shortener.lib.php';
+require_once __DIR__ . '/../../lib/easyurl_function.lib.php';
 require_once __DIR__ . '/../../class/shortener.class.php';
 
 // Global variables definitions
@@ -294,6 +295,11 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
         $object->element_type = $langs->trans('NoLinkedElement');
         $object->fk_element   = $langs->trans('NoLinkedElement');
     }
+
+    print '<tr>';
+    print '<td class="field">' . $langs->transnoentities('NumberOfClicks') . '</td>';
+    print '<td>' . get_number_of_clicks($object) . '</td>';
+    print '</tr>';
 
     // Common attributes
     require_once DOL_DOCUMENT_ROOT . '/core/tpl/commonfields_view.tpl.php';
